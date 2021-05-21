@@ -6,6 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="4dp"
+    app:contentPadding="4dp"
     android:id="@+id/card_view" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,7 +33,7 @@
             android:id="@+id/product_quantityContainer"
             android:textColor="@color/black"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="50dp"
             android:text="Quantity:"
              app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
@@ -53,6 +56,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="48dp"
             android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/product_quantityContainer"
             app:layout_constraintStart_toEndOf="@+id/product_quantityContainer"
             tools:ignore="MissingConstraints" />
@@ -62,7 +66,7 @@
             android:layout_height="45dp"
             android:id="@+id/product_delete"
             android:layout_marginStart="200dp"
-            android:background="@color/white"
+            app:srcCompat="@drawable/ic_baseline_delete_forever_24"
             app:layout_constraintLeft_toRightOf="@+id/product_quantityContainer"
             app:layout_constraintStart_toEndOf="@+id/product_titleContainer"
             app:layout_constraintTop_toTopOf="@+id/product_titleContainer" />
@@ -72,7 +76,7 @@
             android:layout_height="42dp"
             android:id="@+id/product_increase"
             android:layout_marginStart="5dp"
-            android:background="@color/white"
+            app:srcCompat="@drawable/ic_baseline_keyboard_arrow_up_24"
             app:layout_constraintLeft_toRightOf="@+id/product_decrease"
             app:layout_constraintStart_toEndOf="@+id/product_decrease"
             app:layout_constraintTop_toTopOf="@+id/product_quantity" />
@@ -82,7 +86,7 @@
             android:layout_height="42dp"
             android:id="@+id/product_decrease"
             android:layout_marginStart="0dp"
-            android:background="@color/white"
+            app:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_24"
             app:layout_constraintLeft_toRightOf="@+id/product_quantity"
             app:layout_constraintTop_toTopOf="@+id/product_quantity" />
 
