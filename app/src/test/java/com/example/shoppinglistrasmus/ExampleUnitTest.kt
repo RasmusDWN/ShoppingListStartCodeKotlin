@@ -1,4 +1,4 @@
-package com.example.shoppingliststartcodekotlin
+package com.example.shoppinglistrasmus
 
 import org.junit.Test
 
