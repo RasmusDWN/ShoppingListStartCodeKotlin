@@ -16,22 +16,26 @@ import com.example.shoppinglistrasmus.data.Repository
 import com.example.shoppinglistrasmus.data.Repository.addProduct
 import com.google.firebase.FirebaseApp
 import kotlinx.android.synthetic.main.activity_main.*
-import org.pondar.dialogFragmentdemokotlinnew.DialogFragment
+import org.pondar.shoppinglistrasmus.DialogFragment
 
 
 class MainActivity : AppCompatActivity() {
 
     //you need to have an Adapter for the products
-    private val items = arrayOf("0", "1", "3", "4", "5")
     lateinit var adapter: ProductAdapter
     private val RESULT_CODE_PREFERENCES = 1
 
     fun convertListToString(): String {
         var result = ""
         for (product in Repository.products) {
-            result = result + product.toString()
+            result += product.toString()
         }
         return result
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
     }
 
     private fun addNewProduct() {
@@ -44,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main )
+        setContentView(R.layout.activity_main)
         FirebaseApp.initializeApp(applicationContext)
         button_add.setOnClickListener { addNewProduct()}
 
@@ -59,13 +63,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         sortQuantityButton.setOnClickListener {
-            Repository.products.sortBy { it.quantity }
+            Repository.products.sortByDescending { it.quantity }
             adapter.notifyDataSetChanged()
         }
 
         val name = PreferenceHandler.getName(this)
         val notifications = PreferenceHandler.useNotifications(this)
-        updateUISettings(name, notifications)
+        updateUISettings(name,notifications)
     }
 
     fun updateUI() {

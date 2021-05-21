@@ -19,7 +19,6 @@ object Repository {
 
     fun getData(): MutableLiveData<MutableList<Product>> {
         if (products.isEmpty())
-            createTestData()
             addRealTimeListener()
         productListener.value = products //we inform the listener we have new data
         return productListener
@@ -73,7 +72,7 @@ object Repository {
         productListener.value = products
         for (product in products) {
             shoppingDB.collection("products").document(product.id).delete().addOnSuccessListener {
-                Log.d("Snapshot", "The list is now emptied")
+                Log.d("Snapshot", "DocumentSnapshot with ID: ${product.id} is now deleted")
             }
                 .addOnFailureListener { e ->
                     Log.d("Error", "Something went worn in deleting the list")
@@ -92,22 +91,17 @@ object Repository {
                 Log.d("Repository", "listen failed", e)
                 return@addSnapshotListener
             }
+            products.clear()
+            for (document in snapshot?.documents!!) {
+                Log.d("Repository_snapshotlist", "${document.id} => ${document.data}")
+                val product = document.toObject<Product>()!!
+                product.id = document.id
+                products.add(product)
+            }
+            productListener.value = products
         }
-        products.clear()
-        for (document in snapshot?.documents!!) {
-            Log.d("Repository_snapshotlist", "${document.id} => ${document.data}")
-            val product = document.toObject<Product>()!!
-            product.id = document.id
-            products.add(product)
-        }
-
-        productListener.value = products
-    }
 
 
-    fun createTestData()
-    {
-        //add some products to the products list - for testing purposes
     }
 
 }

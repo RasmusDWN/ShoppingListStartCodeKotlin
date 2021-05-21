@@ -1,4 +1,4 @@
-package com.example.shoppinglistrasmus
+package org.pondar.shoppinglistrasmus
 
 import android.app.AlertDialog
 import android.app.Dialog
